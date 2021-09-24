@@ -1,0 +1,15 @@
+shuffle:
+
+Epoch 24/24
+----------
+Epoch 24 [train]: loss=0.8110, acc=0.7577, top1=0.8735, top6=0.9645
+Epoch 24 [valid]: loss=0.6329, acc=0.8114, top1=0.9126, top6=0.9810
+
+---------------
+
+sort:
+Epoch 2/24
+----------
+Epoch 2 [train]: loss=1.2965, acc=0.6239, top1=0.7640, top6=0.9236
+Epoch 2 [valid]: loss=1.5359, acc=0.5705, top1=0.7152, top6=0.8813
+
