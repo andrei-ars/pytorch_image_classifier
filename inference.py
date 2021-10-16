@@ -79,7 +79,9 @@ model_path = "model_state.pt"
 model.load_state_dict(torch.load(model_path))
 model.eval()
 
+"""
 model_full = torch.load("model_full.pt")
+"""
 print("Loading done.")
 
 
@@ -151,8 +153,31 @@ def model_testing(model, src_dir):
     return np.mean(res1_list), np.mean(res6_list)
 
 
+
+def inference_directory(in_dir):
+    for filename in os.listdir(in_dir):
+        print("\n{}".format(filename))
+        path = os.path.join(in_dir, filename)
+        img = Image.open(img_file)
+        rgb_img = Image.new("RGB", img.size)
+        rgb_img.paste(img)
+        rgb_img = rgb_img.resize((224, 224))
+        t1 = time.time()
+        predict, topk_predicts, max_prob = inference(model, rgb_img)
+        t2 = time.time()
+        print("Inference time = {:.2f}".format(t2 - t1))
+        topk_class_names = list(map(lambda idx: idx_to_class[idx], topk_predicts))
+        print('predict: {} (idx={})'.format(idx_to_class[predict], predict))
+        print("max_prob: {:.2f}".format(max_prob))
+        #print('top-6:', topk_predicts)
+        #print('topk_class_names:', topk_class_names)
+
+
 if __name__ == "__main__":
 
+    inference_directory(in_dir="../test/")
+
+    """
     img_file = '/data/5_patexia/image_classifier/0190_TRNA.png'
     #img_file = '/data/5_patexia/image_classifier/INTV.png'
     #class_name = '31'
@@ -160,7 +185,7 @@ if __name__ == "__main__":
     rgb_img = Image.new("RGB", img.size)
     rgb_img.paste(img)
     rgb_img = rgb_img.resize((224, 224))
-    rgb_img.show()
+    #rgb_img.show()
 
     t1 = time.time()
     predict, topk_predicts, max_prob = inference(model, rgb_img)
@@ -179,6 +204,7 @@ if __name__ == "__main__":
     #x = torch.Variable(x.cuda())
     #x = x.float()
     #x = x.unsqueeze(0)
+    """
 
     """
     x = torch.randn(1, 3, 224, 224) 
@@ -186,7 +212,6 @@ if __name__ == "__main__":
     y = y[0]
     print(y)
     """
-
 
     """
     #test_dir = '/w/WORK/ineru/06_scales/_dataset/splited/test'
