@@ -43,7 +43,7 @@ data_transforms = {
         transforms.ToTensor(),
         #ts.transforms.Rotate(20), # data augmentation: rotation 
         #transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-        transforms.Normalize(mean=(0.5,), std=(0.5,))
+        transforms.Normalize(mean=(0.5,0.5,0.5), std=(0.5,0.5,0.5))
     ]),
 
     'valid': transforms.Compose([
@@ -51,7 +51,7 @@ data_transforms = {
         transforms.CenterCrop(IMAGE_WIDTH),
         transforms.ToTensor(),
         #transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-        transforms.Normalize(mean=(0.5,), std=(0.5,))
+        transforms.Normalize(mean=(0.5,0.5,0.5), std=(0.5,0.5,0.5))
     ]),
 }
 

@@ -175,8 +175,10 @@ def inference_directory(in_dir):
 
 if __name__ == "__main__":
 
-    inference_directory(in_dir="../test/")
-
+    #inference_directory(in_dir="../test/")
+    #inference_directory(in_dir="../dataset_abs/valid/0/")
+    inference_directory(in_dir="../dataset_abs/valid/1/")
+    
     """
     img_file = '/data/5_patexia/image_classifier/0190_TRNA.png'
     #img_file = '/data/5_patexia/image_classifier/INTV.png'
