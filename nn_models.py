@@ -12,6 +12,14 @@ def get_resnet18_classifier(num_classes):
     return model_ft
 
 
+def get_torchvision_model(output_size, pretrained=True):
+
+    model_ft = models.mobilenet_v2(pretrained=True)
+    num_ftrs = model_ft.classifier[1].in_features
+    model_ft.classifier[1] = nn.Linear(num_ftrs, output_size)
+    return model_ft
+
+
 class CNN_Net(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
