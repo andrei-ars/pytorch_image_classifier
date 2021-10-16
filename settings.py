@@ -2,7 +2,7 @@
 import os
 
 data_dir = '../dataset_abs/'
-batch_size = 4
+batch_size = 16
 num_workers = 4
 topk = 2
 
