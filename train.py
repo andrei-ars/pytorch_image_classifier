@@ -109,9 +109,9 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
                     #print('outputs: ', outputs)    
 
                 # statistics
-                print('preds: ', preds)
-                print('labels:', labels.data)
-                print('match: ', int(torch.sum(preds == labels.data)))
+                #print('preds: ', preds)
+                #print('labels:', labels.data)
+                #print('match: ', int(torch.sum(preds == labels.data)))
 
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == labels.data)
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=2, gamma=0.5)
 
     model = train_model(model, criterion, optimizer_ft, exp_lr_scheduler,
-        num_epochs=5)
+        num_epochs=6)
 
     # save model
     torch.save(model.state_dict(), "model_state.pt")
