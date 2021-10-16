@@ -63,6 +63,7 @@ print('valid_num_batch:', num_batch['valid'])
 
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     since = time.time()
+    history = dict()
 
     best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
@@ -70,6 +71,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
         print('-' * 10)
+        history[epoch] = {}
 
         # Each epoch has a training and validation phase
         for phase in data_parts:
@@ -123,6 +125,10 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                 phase, epoch_loss, epoch_acc))
+            history[epoch][phase] = {'loss': epoch_loss, 'acc': epoch_acc}
+            if phase == 'valid':
+                l_rate = scheduler.get_last_lr()
+                print("l_rate: {}".format(l_rate))
 
             # deep copy the model
             if phase == 'valid' and epoch_acc > best_acc:
@@ -135,6 +141,14 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     print('Training complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
     print('Best val Acc: {:4f}'.format(best_acc))
+
+    print("\nEp: TrainLoss ValLoss | TrainAcc ValAcc")
+    for epoch in range(num_epochs):
+        train_loss = history[epoch]['train']['loss']
+        valid_loss = history[epoch]['valid']['loss']
+        train_acc = history[epoch]['train']['acc']
+        valid_acc = history[epoch]['valid']['acc']
+        print('{}: {:.4f} {:.4f} | {:.3f} {:.3f}'.format(epoch, train_loss, valid_loss, train_acc, valid_acc))
 
     # load best model weights
     model.load_state_dict(best_model_wts)
@@ -162,7 +176,7 @@ if __name__ == "__main__":
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=2, gamma=0.5)
 
     model = train_model(model, criterion, optimizer_ft, exp_lr_scheduler,
-        num_epochs=6)
+        num_epochs=4)
 
     # save model
     torch.save(model.state_dict(), "model_state.pt")
