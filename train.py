@@ -181,3 +181,15 @@ if __name__ == "__main__":
     # save model
     torch.save(model.state_dict(), "model_state.pt")
     torch.save(model, "model_full.pt")
+
+
+
+"""
+Ep: TrainLoss ValLoss | TrainAcc ValAcc
+0: 0.1703 0.0896 | 0.935 0.962
+1: 0.0187 0.1034 | 0.996 0.962
+2: 0.0136 0.0982 | 0.997 0.962
+3: 0.0115 0.1498 | 0.997 0.952
+
+
+"""
