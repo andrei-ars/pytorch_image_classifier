@@ -27,6 +27,10 @@ import copy
 import progressbar
 SHOW_BAR = False
 
+from nn_models import get_resnet18_classifier
+from nn_models import get_small_cnn_classifier
+from nn_models import CNN_Net
+
 import data_factory
 import settings
 data_dir = settings.data_dir 
@@ -105,9 +109,9 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
                     #print('outputs: ', outputs)    
 
                 # statistics
-                print('preds: ', preds)
-                print('labels:', labels.data)
-                print('match: ', int(torch.sum(preds == labels.data)))
+                #print('preds: ', preds)
+                #print('labels:', labels.data)
+                #print('match: ', int(torch.sum(preds == labels.data)))
 
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == labels.data)
@@ -139,24 +143,27 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 if __name__ == "__main__":
 
-    model_ft = models.resnet18(pretrained=True)
-    num_ftrs = model_ft.fc.in_features
-    model_ft.fc = nn.Linear(num_ftrs, num_classes)
+    #model_ft = models.resnet18(pretrained=True)
+    #num_ftrs = model_ft.fc.in_features
+    #model_ft.fc = nn.Linear(num_ftrs, num_classes)
+
+    model = get_resnet18_classifier(num_classes)
+    #model = CNN_Net(num_classes)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model_ft = model_ft.to(device)
+    model = model.to(device)
 
     criterion = nn.CrossEntropyLoss()
 
     # Observe that all parameters are being optimized
-    optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
+    optimizer_ft = optim.SGD(model.parameters(), lr=0.002, momentum=0.9)
 
     # Decay LR by a factor of 0.1 every 7 epochs
-    exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
+    exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=2, gamma=0.5)
 
-    model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
+    model = train_model(model, criterion, optimizer_ft, exp_lr_scheduler,
         num_epochs=10)
 
     # save model
-    model_path = 'model.pt'
-    torch.save(model_ft.state_dict(), model_path)
+    torch.save(model.state_dict(), "model_state.pt")
+    torch.save(model, "model_full.pt")

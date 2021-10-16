@@ -1,2 +1,2 @@
-# pytorch_scale_classifier
-pytorch_scale_classifier
+# pytorch_image_classifier
+pytorch_image_classifier
