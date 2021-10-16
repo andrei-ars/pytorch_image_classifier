@@ -27,7 +27,7 @@ import copy
 import progressbar
 SHOW_BAR = False
 
-from nn_models import get_resnet18_classifier
+from nn_models import get_resnet18_classifier, get_torchvision_model
 from nn_models import get_small_cnn_classifier
 from nn_models import CNN_Net
 
