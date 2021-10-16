@@ -210,8 +210,11 @@ Ep: TrainLoss ValLoss | TrainAcc ValAcc
 1: 0.0396 0.0940 | 0.994 0.962
 2: 0.0335 0.1043 | 0.993 0.971
 
-2) pretrained:
-
+2) not pretrained:
+Ep: TrainLoss ValLoss | TrainAcc ValAcc
+0: 0.6930 0.5204 | 0.690 0.810
+1: 0.2177 0.2041 | 0.934 0.933
+2: 0.1376 0.3998 | 0.961 0.829 
 
 
 

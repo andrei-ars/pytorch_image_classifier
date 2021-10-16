@@ -39,7 +39,7 @@ data_transforms = {
         #transforms.RandomRotation([0,90], expand=True),
         #transforms.RandomResizedCrop(IMAGE_WIDTH),
         transforms.RandomRotation([-1,1], expand=True),
-        transforms.RandomAffine(translate=(0.01, 0.01))
+        transforms.RandomAffine(translate=(0.01, 0.01)),
         transforms.CenterCrop(IMAGE_WIDTH),
         transforms.ColorJitter(0.1, 0.1, 0, 0),
 
