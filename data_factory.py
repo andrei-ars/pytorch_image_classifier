@@ -38,7 +38,9 @@ data_transforms = {
         #transforms.Pad(padding=60, padding_mode='reflect'),
         #transforms.RandomRotation([0,90], expand=True),
         #transforms.RandomResizedCrop(IMAGE_WIDTH),
+        transforms.RandomRotation([-1,1], expand=True),
         transforms.CenterCrop(IMAGE_WIDTH),
+        transforms.ColorJitter(0.1, 0.1, 0, 0),
 
         transforms.ToTensor(),
         #ts.transforms.Rotate(20), # data augmentation: rotation 

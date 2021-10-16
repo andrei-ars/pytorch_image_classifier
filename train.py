@@ -161,8 +161,8 @@ if __name__ == "__main__":
     #num_ftrs = model_ft.fc.in_features
     #model_ft.fc = nn.Linear(num_ftrs, num_classes)
 
-    #model = get_resnet18_classifier(num_classes)
-    model = get_torchvision_model(num_classes)
+    model = get_resnet18_classifier(num_classes)
+    #model = get_torchvision_model(num_classes)
     #model = CNN_Net(num_classes)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -186,11 +186,20 @@ if __name__ == "__main__":
 
 
 """
+resnet-18:
 Ep: TrainLoss ValLoss | TrainAcc ValAcc
 0: 0.1703 0.0896 | 0.935 0.962
 1: 0.0187 0.1034 | 0.996 0.962
 2: 0.0136 0.0982 | 0.997 0.962
 3: 0.0115 0.1498 | 0.997 0.952
+
+mobilenet_v2:
+Training complete in 17m 34s
+Best val Acc: 0.952381
+Ep: TrainLoss ValLoss | TrainAcc ValAcc
+0: 0.2474 0.1890 | 0.905 0.952
+1: 0.0290 0.1570 | 0.995 0.952
+2: 0.0213 0.1999 | 0.995 0.952
 
 
 """
