@@ -1,7 +1,7 @@
 #export CUDA_VISIBLE_DEVICES=3
 import os
 
-data_dir = '../dataset_abs/'
+data_dir = '../dataset_ads/'
 batch_size = 16
 num_workers = 4
 topk = 2
