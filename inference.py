@@ -177,8 +177,8 @@ if __name__ == "__main__":
 
     print(sys.argv)
 
-    if len(sys.argv) > 2:
-        in_dir = sys.argv[2]
+    if len(sys.argv) > 1:
+        in_dir = sys.argv[1]
     else:
         in_dir = "../test2/"
         #in_dir="../dataset_abs/valid/1/"

@@ -201,5 +201,16 @@ Ep: TrainLoss ValLoss | TrainAcc ValAcc
 1: 0.0290 0.1570 | 0.995 0.952
 2: 0.0213 0.1999 | 0.995 0.952
 
+--
+resnet-18:
+Training complete in 20m 15s
+Best val Acc: 0.971429
+
+Ep: TrainLoss ValLoss | TrainAcc ValAcc
+0: 0.2893 0.1105 | 0.887 0.962
+1: 0.0396 0.0940 | 0.994 0.962
+2: 0.0335 0.1043 | 0.993 0.971
+
+
 
 """
