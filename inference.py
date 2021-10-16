@@ -112,8 +112,6 @@ def inference(model, img, k=1):
 
 
 
-
-
 # model testing
 def model_testing(model, src_dir):
 
@@ -155,10 +153,12 @@ def model_testing(model, src_dir):
 
 
 def inference_directory(in_dir):
+    """ in_dir - a directory with pictures
+    """
     for filename in os.listdir(in_dir):
         print("\n{}".format(filename))
         path = os.path.join(in_dir, filename)
-        img = Image.open(img_file)
+        img = Image.open(path)
         rgb_img = Image.new("RGB", img.size)
         rgb_img.paste(img)
         rgb_img = rgb_img.resize((224, 224))
