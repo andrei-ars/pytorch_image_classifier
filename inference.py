@@ -180,7 +180,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         in_dir = sys.argv[2]
     else:
-        in_dir = "../test/"
+        in_dir = "../test2/"
         #in_dir="../dataset_abs/valid/1/"
 
     inference_directory(in_dir=in_dir)
