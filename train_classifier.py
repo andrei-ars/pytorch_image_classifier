@@ -216,6 +216,11 @@ Ep: TrainLoss ValLoss | TrainAcc ValAcc
 1: 0.2177 0.2041 | 0.934 0.933
 2: 0.1376 0.3998 | 0.961 0.829 
 
+3) resnet pretrained:
+Ep: TrainLoss ValLoss | TrainAcc ValAcc
+0: 0.3151 0.0990 | 0.882 0.952
+1: 0.0672 0.0717 | 0.983 0.962
+2: 0.0419 0.0820 | 0.987 0.971
 
 
 """
